@@ -27,7 +27,6 @@ class ProductController extends Controller
             10
         );
 
-        // replace this example code with whatever you need
         return $this->render('product/index.html.twig', [
             'pagination' => $pagination
         ]);
@@ -42,7 +41,6 @@ class ProductController extends Controller
         $repository = $this->getDoctrine()->getRepository(Product::class);
         $product = $repository->find($id);
 
-        // replace this example code with whatever you need
         return $this->render('product/productDetail.html.twig', [
             'product' => $product
         ]);
