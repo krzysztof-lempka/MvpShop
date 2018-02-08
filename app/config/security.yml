@@ -7,9 +7,6 @@ security:
         in_memory:
             memory:
                 users:
-                    ryan:
-                        password: ryanpass
-                        roles: 'ROLE_USER'
                     admin:
                         password: admin
                         roles: 'ROLE_ADMIN'
