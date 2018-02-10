@@ -6,6 +6,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Product;
+use AppBundle\Cqrs\Command\CreateNewProduct;
+use AppBundle\Cqrs\Query\SingleProductQuery;
 
 class ProductController extends Controller
 {
@@ -21,6 +23,7 @@ class ProductController extends Controller
             ->getQuery();
 
         $paginator  = $this->get('knp_paginator');
+
         $pagination = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
@@ -38,8 +41,7 @@ class ProductController extends Controller
      */
     public function productDetail(int $id)
     {
-        $repository = $this->getDoctrine()->getRepository(Product::class);
-        $product = $repository->find($id);
+        $product = $this->get('app.query_dispatcher')->execute(new SingleProductQuery($id));
 
         return $this->render('product/productDetail.html.twig', [
             'product' => $product

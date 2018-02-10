@@ -1,0 +1,19 @@
+services:
+  app.command_handler_resolver:
+    class:                                 AppBundle\Cqrs\Command\CommandHandlerResolver
+    arguments:                             ["@service_container"]
+
+  app.command_bus:
+    class:                                 AppBundle\Cqrs\Command\CommandBus
+    public:                                true
+    arguments:                             ["@app.command_handler_resolver"]
+
+  app.command_handler.create_new_product:
+    class:                                 AppBundle\Cqrs\Command\CreateNewProductHandler
+    public:                                true
+    arguments:                             ["@doctrine.orm.entity_manager"]
+
+  app.query_dispatcher:
+    class:                                 AppBundle\Cqrs\Query\QueryDispatcher
+    public:                                true
+    arguments:                             ["@doctrine.dbal.default_connection"]
