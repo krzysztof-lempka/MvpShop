@@ -5,8 +5,8 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Product;
-use AppBundle\Cqrs\Command\CreateNewProduct;
 use AppBundle\Cqrs\Query\SingleProductQuery;
 
 class ProductController extends Controller
@@ -14,7 +14,7 @@ class ProductController extends Controller
     /**
      * @Route("/", name="productList")
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request) : Response
     {
         $repository = $this->getDoctrine()->getRepository(Product::class);
 
@@ -39,7 +39,7 @@ class ProductController extends Controller
     /**
      * @Route("/product-detail/{id}", requirements={"id" = "\d+"}, name="productDetail")
      */
-    public function productDetail(int $id)
+    public function productDetail(int $id) : Response
     {
         $product = $this->get('app.query_dispatcher')->execute(new SingleProductQuery($id));
 

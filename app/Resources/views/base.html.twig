@@ -114,15 +114,15 @@
                         </div>
                         <span class="linedivide1"></span>
                         {% if is_granted('ROLE_ADMIN') %}
-                            <a href="#" class="header-wrapicon1 dis-block">
+                            <a href="{{ path('newProduct') }}" class="header-wrapicon1 dis-block">
                                 New product <span class="fa fa-plus"></span>
                             </a>
                             <span class="linedivide1"></span>
-                            <a href="{{path('logout')}}" class="header-wrapicon1 dis-block">
+                            <a href="{{ path('logout') }}" class="header-wrapicon1 dis-block">
                                 Sign out
                             </a>
                         {% else %}
-                            <a href="{{path('login')}}" class="header-wrapicon1 dis-block">
+                            <a href="{{ path('login') }}" class="header-wrapicon1 dis-block">
                                 Sign in
                             </a>
                         {% endif %}

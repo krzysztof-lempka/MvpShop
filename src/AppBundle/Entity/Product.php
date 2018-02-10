@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Event\LifecycleEventArgs;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
 * @ORM\Table(name="product")
@@ -21,6 +22,8 @@ class Product
     private $id;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Length(min = 2, max = 150)
      * @ORM\Column(type="string", length=150)
      */
     private $name;
@@ -31,6 +34,8 @@ class Product
     private $price;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Length(min = 100)
      * @ORM\Column(type="text")
      */
     private $description;

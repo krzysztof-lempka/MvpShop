@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+    <div class="">
+        <div class="col-md-6 offset-md-3">
+            <h4 class="m-text26 p-b-36 p-t-15">New product</h4>
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
