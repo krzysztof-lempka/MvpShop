@@ -11,7 +11,7 @@ services:
   app.command_handler.create_new_product:
     class:                                 AppBundle\Cqrs\Command\CreateNewProductHandler
     public:                                true
-    arguments:                             ["@doctrine.orm.entity_manager"]
+    arguments:                             ["@doctrine.orm.entity_manager", "@swiftmailer.mailer"]
 
   app.query_dispatcher:
     class:                                 AppBundle\Cqrs\Query\QueryDispatcher

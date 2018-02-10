@@ -9,10 +9,12 @@ use AppBundle\Entity\Product;
 class CreateNewProductHandler
 {
     private $entityManager;
+    private $mailer;
 
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManager $entityManager, \Swift_Mailer $mailer)
     {
         $this->entityManager = $entityManager;
+        $this->mailer = $mailer;
     }
 
     public function handle(CreateNewProduct $command) : void
@@ -24,7 +26,13 @@ class CreateNewProductHandler
 
         $this->entityManager->persist($product);
         $this->entityManager->flush();
+        $name = $command->name();
+        $message = (new \Swift_Message('Hello Email'))
+           ->setFrom('fake@example.com')
+           ->setTo('fake@example.com')
+           ->setSubject('New product')
+           ->setBody("A new product has been added. Product name: $name");
 
-        //TODO mail notification
+       $this->mailer->send($message);
     }
 }
