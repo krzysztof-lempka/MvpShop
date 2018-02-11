@@ -7,7 +7,7 @@ use AppBundle\Cqrs\Query\QueryInterface;
 use Doctrine\DBAL\Connection as Dbal;
 
 /**
- * Query fetching product by primary key
+ * Fetching product by primary key
  */
 class SingleProductQuery implements QueryInterface
 {
