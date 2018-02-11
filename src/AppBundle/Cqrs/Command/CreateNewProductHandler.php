@@ -6,6 +6,9 @@ use Doctrine\ORM\EntityManager;
 use AppBundle\Cqrs\Command\CreateNewProduct;
 use AppBundle\Entity\Product;
 
+/**
+ * Handler class for CreateNewProduct command
+ */
 class CreateNewProductHandler
 {
     private $entityManager;
@@ -17,6 +20,9 @@ class CreateNewProductHandler
         $this->mailer = $mailer;
     }
 
+    /**
+     * Creates new product and sends email notification
+     */
     public function handle(CreateNewProduct $command) : void
     {
         $product = new Product();

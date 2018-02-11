@@ -3,7 +3,7 @@
 namespace AppBundle\Cqrs\Command;
 
 /**
- *
+ * Command used in process of creating a new product
  */
 class CreateNewProduct
 {

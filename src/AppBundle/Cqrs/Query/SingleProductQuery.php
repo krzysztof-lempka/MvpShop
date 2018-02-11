@@ -3,9 +3,13 @@
 namespace AppBundle\Cqrs\Query;
 
 use AppBundle\Entity\Product;
+use AppBundle\Cqrs\Query\QueryInterface;
 use Doctrine\DBAL\Connection as Dbal;
 
-class SingleProductQuery
+/**
+ * Query fetching product by primary key
+ */
+class SingleProductQuery implements QueryInterface
 {
     private $id;
 

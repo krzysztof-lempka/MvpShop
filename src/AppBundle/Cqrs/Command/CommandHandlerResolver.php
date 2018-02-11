@@ -14,6 +14,12 @@ class CommandHandlerResolver implements HandlerResolverInterface
         $this->container = $container;
     }
 
+    /**
+     * Gets handler instance based on command type.
+     * The hanlder should be defind as service.
+     *
+     * @param object $command Command class instance
+     */
     public function handler($command)
     {
         $handlerContainerName = $this->getHandlerName($command);
@@ -25,6 +31,12 @@ class CommandHandlerResolver implements HandlerResolverInterface
         return $this->container->get($handlerContainerName);
     }
 
+    /**
+     * Returns handler service name for specific command
+     * The handler should be defined as service.
+     *
+     * @param object $command Command class instance
+     */
     private function getHandlerName($command) : string
     {
         $commandNamespace = explode('\\', get_class($command));
